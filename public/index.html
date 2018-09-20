@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+  </body>
+</html>
+<!--
+  生命周期函数是指在某一时刻会自动执行的函数
+
+初始化  initialization
+
+mounting
+
+componentWillMount 在组件即将被挂载到页面的时候执行
+  componentWillMount(){
+  console.log('componentWillMount');
+  }
+
+render  挂载
+componentDidMount 挂载之后执行
+  componentDidMount(){
+  console.log('componentDidMount');
+}
+
+updation 组件更新
+// 在数据更新之前  会自动执行
+  shouldComponentUpdate(){
+    console.log('shouldComponentUpdate');
+    return false; return true;
+  }
+// 组件更新之前 ，他会自动执行，但是他在shouldcomponentupdat 之后被执行
+如果shouldcomponentupadt返回true 他才执行
+如果shouldcomponentupadt返回false 他就不执行
+  componentWillUpdate(){
+    console.log('componentWillUpdate');
+  }
+  componentDidUpdate(){
+    console.log('componentDidUpdate');
+  }
+//当一个组件从父组件接受参数
+//如果这个组件第一次存在父组件中 不会执行
+//如果这个组件之前已经存在父组件中 就会执行
+  componentWillReceiveProps(){
+    console.log('componentWillReceiveProps');
+  }
+// 当这个页面将被剔除的时候会执行
+ componentWillUnmount(){
+      console.log('componentWillUnmount');
+  }
+
+-->
