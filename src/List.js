@@ -3,7 +3,7 @@ import React, { Component,Fragment } from 'react';
 import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
 import { Button,Flex,List } from 'antd-mobile';
 import store from './store'
-import {CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DELE_TODO_ITEM} from './store/actionTypes'
+import { gethadonChange,getaddButtom,getdelList } from  './store/actionCreators'
 import './App.css'
 class TodoList extends Component {
     //构造函数 constructor 优先
@@ -15,9 +15,8 @@ class TodoList extends Component {
         // console.log(store.getState())
         this.hadonChange=this.hadonChange.bind(this);
         this.addButtom=this.addButtom.bind(this);
-        //
+        //订阅监听store的变化
         this.hasChange= this.hasChange.bind(this);
-        //监听store的变化
         store.subscribe(this.hasChange);
     }
     render() {
@@ -61,27 +60,17 @@ class TodoList extends Component {
     }
 
     hadonChange (e) {
-        const action = {
-            //帮我改变vue的值
-            type:CHANGE_INPUT_VALUE,
-            value:e.target.value
-        }
+        const action = gethadonChange(e.target.value)
         store.dispatch(action);
     }
     // 增加list的item
     addButtom (){
-        const action = {
-            //帮我改变vue的值
-            type:ADD_TODO_ITEM,
-        }
+        const action = getaddButtom();
         store.dispatch(action);
     }
     //删除list的item
     delList(index){
-        const action = {
-            type:DELE_TODO_ITEM,
-            index
-        }
+        const action = getdelList(index)
         store.dispatch(action);
     }
     //监听 store的变化

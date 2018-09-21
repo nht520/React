@@ -2,6 +2,8 @@ import {CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DELE_TODO_ITEM} from './actionTypes'
 
 //类似笔记本 存储内容 数据
 //state 就是数据
+
+//纯函数指的是，给固定的输入，就一定会有固定的输出，而且不会有任何的副作用。
 const  defaultState = {
   inputValue:'',
   list:[],
