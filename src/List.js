@@ -17,7 +17,6 @@ class TodoList extends Component {
         //
         this.hasChange= this.hasChange.bind(this);
         store.subscribe(this.hasChange);
-
     }
     render() {
         return (
@@ -40,15 +39,14 @@ class TodoList extends Component {
                     </Flex>
                     <ul>
                         {/*list列表*/}
-                        <List renderHeader={()=>'我是标题'}>
-                            {this.state.list.map(v=>{
-                                return (
-                                    <List.Item key={v}>
-                                        {v}
-                                    </List.Item>
-                                )
-                            })}
-                        </List>
+                        {this.state.list.map((item,index)=>{
+                            return (
+                                <List.Item key={index}>
+                                    {item}
+                                </List.Item>
+                            )
+                        })}
+
                     </ul>
                 </div>
             </Fragment>
