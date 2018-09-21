@@ -2,7 +2,6 @@ import React, { Component,Fragment } from 'react';
 //引用todoitem
 import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
 import { Button,Flex,List } from 'antd-mobile';
-// import Axios from 'axios';
 import store from './store'
 import './App.css'
 class TodoList extends Component {
@@ -11,27 +10,15 @@ class TodoList extends Component {
         super(props);
         //从store里面获取数据
         this.state = store.getState();
-
         //当组件的 state 或者props 发生改变的时候  他的render会自动执行一次 页面就会重新渲染页面
         // console.log(this.state = store.getState())
         this.hadonChange=this.hadonChange.bind(this);
+        this.addButtom=this.addButtom.bind(this);
+        //
         this.hasChange= this.hasChange.bind(this);
         store.subscribe(this.hasChange);
 
     }
-    // componentDidMount (){
-    //     //数据请求
-    //     Axios.get("/api/todolist",)
-    //         .then(res => {
-    //             // console.log(res.data);
-    //             this.setState(() => ({
-    //                 oped:[...res.data]
-    //             }));
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //     })
-    // }
     render() {
         return (
             <Fragment>
@@ -47,7 +34,9 @@ class TodoList extends Component {
                         </Flex.Item>
                     </Flex>
                     <Flex>
-                        <Flex.Item> <Button className="button" type="primary">我是列表提交</Button></Flex.Item>
+                        <Flex.Item>
+                            <Button onClick={this.addButtom} className="button" type="primary" >提交</Button>
+                        </Flex.Item>
                     </Flex>
                     <ul>
                         {/*list列表*/}
@@ -65,6 +54,7 @@ class TodoList extends Component {
             </Fragment>
         );
     }
+
     hadonChange (e) {
         const action = {
             //帮我改变vue的值
@@ -74,9 +64,18 @@ class TodoList extends Component {
         store.dispatch(action);
        // console.log(e.target.value)
     }
+
     hasChange () {
         // console.log("store change")
         this.setState(store.getState());
+    }
+
+    addButtom (){
+        const action = {
+            //帮我改变vue的值
+            type:'add_todo_item',
+        }
+        store.dispatch(action);
     }
 
 }
