@@ -3,6 +3,7 @@ import React, { Component,Fragment } from 'react';
 import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
 import { Button,Flex,List } from 'antd-mobile';
 import store from './store'
+import {CHANGE_INPUT_VALUE,ADD_TODO_ITEM,DELE_TODO_ITEM} from './store/actionTypes'
 import './App.css'
 class TodoList extends Component {
     //构造函数 constructor 优先
@@ -33,7 +34,7 @@ class TodoList extends Component {
                             />
                         </Flex.Item>
                         <Flex.Item>
-                            <Button onClick={this.addButtom} className="button" type="primary" >提交</Button>
+                            <Button onClick={this.addButtom} className="button" type="primary" >添加</Button>
                         </Flex.Item>
                     </Flex>
                     <ul>
@@ -42,9 +43,12 @@ class TodoList extends Component {
                             return (
                                 <Flex key={index}>
                                     <Flex.Item>
-                                        <List.Item onClick={this.delList.bind(this,index)} >
+                                        <List.Item >
                                             {item}
                                         </List.Item>
+                                    </Flex.Item>
+                                    <Flex.Item>
+                                        <Button onClick={this.delList.bind(this,index)} >删除</Button>
                                     </Flex.Item>
                                 </Flex>
                             )
@@ -59,37 +63,30 @@ class TodoList extends Component {
     hadonChange (e) {
         const action = {
             //帮我改变vue的值
-            type:'change_input_value',
+            type:CHANGE_INPUT_VALUE,
             value:e.target.value
         }
         store.dispatch(action);
     }
-    // handokKeyup (e) {
-    //     if (e.keyCode === 13){
-    //         this.hadonChange ()
-    //         // alert(13)
-    //     }
-    // }
     // 增加list的item
     addButtom (){
         const action = {
             //帮我改变vue的值
-            type:'add_todo_item',
+            type:ADD_TODO_ITEM,
         }
         store.dispatch(action);
     }
     //删除list的item
     delList(index){
         const action = {
-            type:"dele_todo_item",
+            type:DELE_TODO_ITEM,
             index
         }
         store.dispatch(action);
     }
-
+    //监听 store的变化
     hasChange () {
         // console.log("store change")
-        //监听 store的变化
         this.setState(store.getState());
     }
 
