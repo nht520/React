@@ -16,6 +16,7 @@ class TodoList extends Component {
         this.addButtom=this.addButtom.bind(this);
         //
         this.hasChange= this.hasChange.bind(this);
+        //监听store的变化
         store.subscribe(this.hasChange);
     }
     render() {
@@ -25,14 +26,12 @@ class TodoList extends Component {
                     <Flex>
                         <Flex.Item>
                             <input
-                                placeholder='to doinfo'
+                                placeholder='todoinfo'
                                 className='ninput'
                                 value = {this.state.inputValue}
                                 onChange={this.hadonChange}
                             />
                         </Flex.Item>
-                    </Flex>
-                    <Flex>
                         <Flex.Item>
                             <Button onClick={this.addButtom} className="button" type="primary" >提交</Button>
                         </Flex.Item>
@@ -43,12 +42,9 @@ class TodoList extends Component {
                             return (
                                 <Flex key={index}>
                                     <Flex.Item>
-                                        <List.Item>
+                                        <List.Item onClick={this.delList.bind(this,index)} >
                                             {item}
                                         </List.Item>
-                                    </Flex.Item>
-                                    <Flex.Item>
-                                        <Button type="warning">删除</Button>
                                     </Flex.Item>
                                 </Flex>
                             )
@@ -67,21 +63,34 @@ class TodoList extends Component {
             value:e.target.value
         }
         store.dispatch(action);
-       // console.log(e.target.value)
     }
-
-    hasChange () {
-        // console.log("store change")
-        this.setState(store.getState());
-    }
-
+    // handokKeyup (e) {
+    //     if (e.keyCode === 13){
+    //         this.hadonChange ()
+    //         // alert(13)
+    //     }
+    // }
+    // 增加list的item
     addButtom (){
         const action = {
             //帮我改变vue的值
             type:'add_todo_item',
         }
         store.dispatch(action);
-    //    成功了
+    }
+    //删除list的item
+    delList(index){
+        const action = {
+            type:"dele_todo_item",
+            index
+        }
+        store.dispatch(action);
+    }
+
+    hasChange () {
+        // console.log("store change")
+        //监听 store的变化
+        this.setState(store.getState());
     }
 
 }
