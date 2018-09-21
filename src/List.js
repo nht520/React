@@ -76,6 +76,7 @@ class TodoList extends Component {
             type:'add_todo_item',
         }
         store.dispatch(action);
+    //    成功了
     }
 
 }
