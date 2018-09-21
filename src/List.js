@@ -1,7 +1,6 @@
-import React, { Component,Fragment } from 'react';
+import React, { Component } from 'react';
 //引用todoitem
-import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
-import { Button,Flex,List } from 'antd-mobile';
+import ListUi from './ListUI'
 import store from './store'
 import { gethadonChange,getaddButtom,getdelList } from  './store/actionCreators'
 import './App.css'
@@ -15,47 +14,21 @@ class TodoList extends Component {
         // console.log(store.getState())
         this.hadonChange=this.hadonChange.bind(this);
         this.addButtom=this.addButtom.bind(this);
+        this.delList = this.delList.bind(this);
         //订阅监听store的变化
         this.hasChange= this.hasChange.bind(this);
         store.subscribe(this.hasChange);
     }
     render() {
         return (
-            <Fragment>
-                <div className='rjuq'>
-                    <Flex>
-                        <Flex.Item>
-                            <input
-                                placeholder='todoinfo'
-                                className='ninput'
-                                value = {this.state.inputValue}
-                                onChange={this.hadonChange}
-                            />
-                        </Flex.Item>
-                        <Flex.Item>
-                            <Button onClick={this.addButtom} className="button" type="primary" >添加</Button>
-                        </Flex.Item>
-                    </Flex>
-                    <ul>
-                        {/*list列表*/}
-                        {this.state.list.map((item,index)=>{
-                            return (
-                                <Flex key={index}>
-                                    <Flex.Item>
-                                        <List.Item >
-                                            {item}
-                                        </List.Item>
-                                    </Flex.Item>
-                                    <Flex.Item>
-                                        <Button onClick={this.delList.bind(this,index)} >删除</Button>
-                                    </Flex.Item>
-                                </Flex>
-                            )
-                        })}
-
-                    </ul>
-                </div>
-            </Fragment>
+            //listUi组件
+            <ListUi
+                inputValue={this.state.inputValue}
+                list={this.state.list}
+                hadonChange={this.hadonChange}
+                addButtom={this.addButtom}
+                delList={this.delList}
+            />
         );
     }
 
