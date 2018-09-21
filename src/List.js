@@ -41,9 +41,16 @@ class TodoList extends Component {
                         {/*list列表*/}
                         {this.state.list.map((item,index)=>{
                             return (
-                                <List.Item key={index}>
-                                    {item}
-                                </List.Item>
+                                <Flex key={index}>
+                                    <Flex.Item>
+                                        <List.Item>
+                                            {item}
+                                        </List.Item>
+                                    </Flex.Item>
+                                    <Flex.Item>
+                                        <Button type="warning">删除</Button>
+                                    </Flex.Item>
+                                </Flex>
                             )
                         })}
 
