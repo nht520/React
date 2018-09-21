@@ -2,11 +2,11 @@
 //state 就是数据
 const  defaultState = {
   inputValue:'I love You',
-  oped:[],
+  list:[],
 }
 //reducer 可以接受state,但是不能修改state
 
-export default (state=defaultState,action) => {
+export default (state=defaultState, action) => {
 
     if(action.type === 'change_input_value'){
         const  newState = JSON.parse(JSON.stringify(state));
@@ -17,7 +17,7 @@ export default (state=defaultState,action) => {
 
     if(action.type === 'add_todo_item'){
         const  newState = JSON.parse(JSON.stringify(state));
-        newState.oped.push(newState.inputValue);
+        newState.list.push(newState.inputValue);
         newState.inputValue='';
         // console.log(newState);
         return  newState;

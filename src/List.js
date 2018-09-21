@@ -11,7 +11,7 @@ class TodoList extends Component {
         //从store里面获取数据
         this.state = store.getState();
         //当组件的 state 或者props 发生改变的时候  他的render会自动执行一次 页面就会重新渲染页面
-        // console.log(this.state = store.getState())
+        // console.log(store.getState())
         this.hadonChange=this.hadonChange.bind(this);
         this.addButtom=this.addButtom.bind(this);
         //
@@ -41,7 +41,7 @@ class TodoList extends Component {
                     <ul>
                         {/*list列表*/}
                         <List renderHeader={()=>'我是标题'}>
-                            {this.state.oped.map(v=>{
+                            {this.state.list.map(v=>{
                                 return (
                                     <List.Item key={v}>
                                         {v}
