@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
 import { Button,Flex,List } from 'antd-mobile';
-
 class ListUI extends Component{
     render(){
         return(

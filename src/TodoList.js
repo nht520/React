@@ -13,9 +13,6 @@ class TodoList extends Component {
             list:[]
         }
         //点击事件中的bind(this)
-        this.onChghd=this.onChghd.bind(this);
-        this.Adddeta=this.Adddeta.bind(this);
-        this.Deldeta=this.Deldeta.bind(this);
     }
     render() {
         return (
@@ -61,24 +58,34 @@ class TodoList extends Component {
         })
     }
     //获取vue改变的值
-    onChghd (e) {
+    onChghd = (e) => {
         const value = e.target.value
         this.setState(() => ({
             inputValue: value
         }))
     }
     //增加内容
-    Adddeta (){
+    Adddeta = () => {
+
+        // if ( this.state.inputValue === "" ){
+        //     alert("请输入内容")
+        //
+        // } else if ( this.state.inputValue.length>0 ){
+        //     this.setState({
+        //         list:[...this.state.list,this.state.inputValue],
+        //         inputValue:''
+        //     })
+        // }
         this.setState(( prevState ) => ({
             list:[...prevState.list,prevState.inputValue],
             inputValue:''
-        })
+          })
+        )
            //  ,() => {
            // console.log(this.ul.querySelectorAll('div').length)}
-        );
     }
     //删除内容
-    Deldeta (index){
+    Deldeta = (index) => {
         this.setState((prevState) =>{
             const list = [...prevState.list];
             list.splice(index,1);

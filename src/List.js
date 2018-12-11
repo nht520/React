@@ -12,11 +12,7 @@ class TodoList extends Component {
         this.state = store.getState();
         //当组件的 state 或者props 发生改变的时候  他的render会自动执行一次 页面就会重新渲染页面
         // console.log(store.getState())
-        this.hadonChange=this.hadonChange.bind(this);
-        this.addButtom=this.addButtom.bind(this);
-        this.delList = this.delList.bind(this);
         //订阅监听store的变化
-        this.hasChange= this.hasChange.bind(this);
         store.subscribe(this.hasChange);
     }
     render() {
@@ -31,27 +27,25 @@ class TodoList extends Component {
             />
         );
     }
-
-    hadonChange (e) {
+    hadonChange = (e) => {
         const action = gethadonChange(e.target.value)
         store.dispatch(action);
     }
     // 增加list的item
-    addButtom (){
+    addButtom = () => {
         const action = getaddButtom();
         store.dispatch(action);
     }
     //删除list的item
-    delList(index){
+    delList = (index) => {
         const action = getdelList(index)
         store.dispatch(action);
     }
     //监听 store的变化
-    hasChange () {
+    hasChange = () => {
         // console.log("store change")
         this.setState(store.getState());
     }
-
 }
 
 export default TodoList;
